@@ -11,12 +11,13 @@
 class scoreUtils {
 
 protected :
-    void dist2Cities(City c1, City c2);
+    int dist2Cities(City c1, City c2);
     int radConv(int nb);
     int const PI = 3;
     int const rEarth = 3;
 public :
     int totDist (File file, std::vector<int> solution);
+
 
 
 

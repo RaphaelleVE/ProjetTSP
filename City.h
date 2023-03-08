@@ -11,25 +11,25 @@ class City {
     protected:
         int id;
         std::string name;
-        int latitude;
-        int longitude;
+        float latitude;
+        float longitude;
 
     public:
         int getId() const;
 
         void setId(int id);
 
-        const std::string &getName() const;
+        const std::string getName() const;
 
         void setName(const std::string &name);
 
-        int getLatitude() const;
+    float getLatitude() const;
 
-        void setLatitude(int latitude);
+        void setLatitude(float latitude);
 
-        int getLongitude() const;
+    float getLongitude() const;
 
-        void setLongitude(int longitude);
+        void setLongitude(float longitude);
 };
 
 

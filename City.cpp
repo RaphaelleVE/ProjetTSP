@@ -12,7 +12,7 @@ void City::setId(int id) {
     City::id = id;
 }
 
-const std::string &City::getName() const {
+const std::string City::getName() const {
     return name;
 }
 
@@ -20,18 +20,18 @@ void City::setName(const std::string &name) {
     City::name = name;
 }
 
-int City::getLatitude() const {
+float City::getLatitude() const {
     return latitude;
 }
 
-void City::setLatitude(int latitude) {
+void City::setLatitude(float latitude) {
     City::latitude = latitude;
 }
 
-int City::getLongitude() const {
+float City::getLongitude() const {
     return longitude;
 }
 
-void City::setLongitude(int longitude) {
+void City::setLongitude(float longitude) {
     City::longitude = longitude;
 }

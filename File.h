@@ -8,6 +8,7 @@
 #include <vector>
 #include "City.h"
 
+
 class File {
     protected:
         int cityNb;
@@ -17,11 +18,11 @@ public:
 
     void setCityNb(int cityNb);
 
-    const std::vector<City> &getCities() const;
+    std::vector<City> &getCities();
 
     void setCities(const std::vector<City> &cities);
 
-
+    void registerTSPFile(const std::string &fileName);
 };
 
 

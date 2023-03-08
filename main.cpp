@@ -1,6 +1,9 @@
 #include <iostream>
+#include "File.h"
+
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    File file ;
+    file.registerTSPFile("../france_10.tsp");
     return 0;
 }
