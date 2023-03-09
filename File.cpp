@@ -28,11 +28,12 @@ void File::registerTSPFile(const std::string &fileName) {
         int nbCities = 0 ;
         file >> nbCities;
         std::cout << nbCities << '\n';
+        setCityNb(nbCities);
         std::string save;
         float saveInt;
         for (int j = 0 ; j < nbCities ; j++){
                 City c ;
-                c.setId(j+1);
+                c.setId(j);
                 file >> save;
                 c.setName(save);
                 file >> saveInt;
@@ -40,10 +41,10 @@ void File::registerTSPFile(const std::string &fileName) {
                 file >> saveInt;
                 c.setLatitude(saveInt);
                 getCities().push_back(c);
-                std::cout << c.getId()<< '\n' ;
+                /*std::cout << c.getId()<< '\n' ;
                 std::cout << c.getName()<< '\n' ;
                 std::cout << c.getLatitude()<< '\n' ;
-                std::cout << c.getLongitude()<< '\n' ;
+                std::cout << c.getLongitude()<< '\n' ;**/
         }
     }else{
         std::cout << "error opening file" ;
