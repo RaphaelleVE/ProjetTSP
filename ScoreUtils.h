@@ -20,11 +20,11 @@ protected :
 
 protected:
      std::vector<int> solutionTab;
-     int dist2Cities(const City& c1, const City& c2);
-     int radConv(float nb) ;
+     float dist2Cities(const City& c1, const City& c2);
+     float radConv(float nb) ;
 public :
-    enum SolutionType {RANDOM,WRITE};
-    void generateRandomSolTab(const int nbCities);
+    enum SolutionType {RANDOM,GLOUTON};
+    std::vector<int> generateRandomSolTab(const int nbCities);
      int totDist (File file, SolutionType sType);
 };
 
