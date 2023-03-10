@@ -7,10 +7,15 @@
 #include <algorithm>
 #include <random>
 
+/**
+ * Get the total distance for the solution
+ * @param file
+ * @param sType
+ * @return
+ */
 int ScoreUtils::totDist(File file, SolutionType sType) {
     switch (sType) {
         case RANDOM :
-
             generateRandomSolTab(file.getCityNb());
             break;
         case WRITE : std::cout << "not implemented yet";
@@ -19,14 +24,15 @@ int ScoreUtils::totDist(File file, SolutionType sType) {
     }
     int tot = 0;
     for(int i = 0; i < file.getCityNb(); i++){
+        std::cout << file.getCityNb() << '\n';
         if(i != file.getCityNb()){
-           tot += dist2Cities(file.getCities()[solutionTab[i]],file.getCities()[solutionTab[i]]);
-            std::cout << tot << '\n' ;
-
-       }
-       else{
-           tot += dist2Cities(file.getCities()[solutionTab[i]],file.getCities()[solutionTab[0]]);
-       }
+            tot += dist2Cities(file.getCities()[solutionTab[i]],file.getCities()[solutionTab[i+1]]);
+            std::cout << tot << '\n';
+        }
+        else {
+            std::cout << "paopaoeod" << '\n';
+            tot += dist2Cities(file.getCities()[solutionTab[i]],file.getCities()[solutionTab[0]]);
+        }
     }
     return tot;
 }

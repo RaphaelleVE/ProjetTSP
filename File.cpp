@@ -21,8 +21,12 @@ void File::setCities(const std::vector<City> &cities) {
     File::cities = cities;
 }
 
+/**
+ * Save the cities that are inside the file
+ * @param fileName
+ */
 void File::registerTSPFile(const std::string &fileName) {
-    std::cout << fileName ;
+    std::cout << fileName << '\n';
     std::ifstream file(fileName);
     if (file.is_open()){
         int nbCities = 0 ;
