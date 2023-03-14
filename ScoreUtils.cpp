@@ -19,20 +19,20 @@ int ScoreUtils::totDist(File file, SolutionType sType) {
         case RANDOM :
             solTab = generateRandomSolTab(file.getCityNb());
             break;
-        case GLOUTON : std::cout << "not implemented yet";
-            return -1;
+        case GLOUTON :
+            solTab = generateGloutonSolTab(file);
             break;
     }
     int tot = 0;
     for(int i = 0; i < file.getCityNb() +1; i++){
         if(i != file.getCityNb()){
             tot += dist2Cities(file.getCities()[solTab[i]],file.getCities()[solTab[i+1]]);
-            std::cout << "tot1 " << tot << ' ';
+            //std::cout << "tot1 " << tot << ' ';
         }
         else {
             std::cout << "here" << ' ';
             tot += dist2Cities(file.getCities()[solTab[i]],file.getCities()[solTab[0]]);
-            std::cout << "totot " << tot << ' ';
+            //std::cout << "totot " << tot << ' ';
         }
     }
     return tot;
@@ -77,10 +77,38 @@ const float ScoreUtils::getREarth()  {
     return rEarth;
 }
 
+std::vector<int> ScoreUtils::generateGloutonSolTab(File file) {
+    std::vector<int> solution;
+    float tot;
+    float keep;
+    float tempo;
 
+    solution.push_back(0);
+
+    //TODO: faire en sorte que l'on parte de la ville 0 puis de la ville 9 etc ...
+    for (int i = 0; i < file.getCityNb(); i++) {
+        keep = 1000000;
+        for(int j = 0; j < file.getCityNb(); j++){
+            if (i != j) {
+                tempo = dist2Cities(file.getCities()[i], file.getCities()[j]);
+                if (tempo < keep) {
+                    keep = tempo;
+                    solution[i + 1] = j;
+                }
+            }
+        }
+    }
+
+    for (int i = 0; i < file.getCityNb(); i++) {
+        std::cout << solution[i] << ' ';
+    }
+
+    return solution;
+}
 
 std::vector<int> ScoreUtils::generateRandomSolTab(const int nbCities) {
     std::vector<int> solution;
+
     for (int i = 0; i < nbCities; i++) {
         solution.push_back(i);
     }

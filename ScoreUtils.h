@@ -25,6 +25,7 @@ protected:
 public :
     enum SolutionType {RANDOM,GLOUTON};
     std::vector<int> generateRandomSolTab(const int nbCities);
+    std::vector<int> generateGloutonSolTab(File file);
      int totDist (File file, SolutionType sType);
 };
 
