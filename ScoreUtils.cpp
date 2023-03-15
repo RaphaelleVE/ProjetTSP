@@ -6,6 +6,7 @@
 #include <math.h>
 #include <algorithm>
 #include <random>
+#include <utility>
 
 /**
  * Get the total distance for the solution
@@ -20,7 +21,7 @@ int ScoreUtils::totDist(File file, SolutionType sType) {
             solTab = generateRandomSolTab(file.getCityNb());
             break;
         case GLOUTON :
-            solTab = generateGloutonSolTab(file);
+            solTab = generateGloutonSolTab(file, 0);
             break;
     }
     int tot = 0;
@@ -77,18 +78,13 @@ const float ScoreUtils::getREarth()  {
     return rEarth;
 }
 
-std::vector<int> ScoreUtils::generateGloutonSolTab(File file) {
+std::vector<int> ScoreUtils::generateGloutonSolTab(File file, const int numCity) {
     std::vector<int> solution;
-    float tot;
-    float keep;
-    float tempo;
-
-    solution.push_back(0);
 
     //TODO: faire en sorte que l'on parte de la ville 0 puis de la ville 9 etc ...
-    for (int i = 0; i < file.getCityNb(); i++) {
+    /*for (int i = 0; i < nbTotCities; i++) {
         keep = 1000000;
-        for(int j = 0; j < file.getCityNb(); j++){
+        for(int j = 0; j < nbTotCities; j++){
             if (i != j) {
                 tempo = dist2Cities(file.getCities()[i], file.getCities()[j]);
                 if (tempo < keep) {
@@ -97,13 +93,41 @@ std::vector<int> ScoreUtils::generateGloutonSolTab(File file) {
                 }
             }
         }
-    }
+    }*/
 
-    for (int i = 0; i < file.getCityNb(); i++) {
-        std::cout << solution[i] << ' ';
-    }
+    return findSmallestDist(std::move(file), numCity, solution);
+}
 
-    return solution;
+std::vector<int> ScoreUtils::findSmallestDist(File file, const int city, std::vector<int> solution) {
+    float keep = 1000000;
+    float tempo;
+    const int nbTotCities = file.getCityNb();
+    solution.push_back(city);
+
+    if (solution.size() <= nbTotCities) {
+        for (int i : solution) {
+            std::cout << i << ' ';
+        }
+
+        return solution;
+    } else {
+        for (int i = 0; i < nbTotCities; ++i) {
+            if (std::find(solution.begin(), solution.end(), i) == solution.end()) {
+                tempo = dist2Cities(file.getCities()[city], file.getCities()[i]);
+
+                if (tempo < keep) {
+                    keep = tempo;
+                    solution.push_back(i);
+                }
+            }
+        }
+
+        for (int i : solution) {
+            std::cout << i << ' ';
+        }
+
+        return findSmallestDist(file, solution[solution.size() - 1], solution);
+    }
 }
 
 std::vector<int> ScoreUtils::generateRandomSolTab(const int nbCities) {
