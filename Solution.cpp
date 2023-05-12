@@ -5,6 +5,7 @@
 #include "Solution.h"
 #include <math.h>
 #include <algorithm>
+#include <fstream>
 
 
 float Solution::getPi() const {
@@ -96,4 +97,16 @@ int Solution::totDist(File file) {
 
 std::vector<int> Solution::resolve() {
     return std::vector<int>();
+}
+
+//todo A TESTER
+void Solution::writeAnswerFile(std::vector<int> result) {
+    std::ofstream outFile("result.txt");
+    //pour vider (voir si utile & crée pas de beug si existe pas)
+    //std::ofstream.open("result.txt", std::ofstream::out | std::ofstream::trunc);
+    //std::ofstream.close();
+    for(int cityNb : result){
+        outFile << cityNb;
+    }
+    outFile.close();
 }

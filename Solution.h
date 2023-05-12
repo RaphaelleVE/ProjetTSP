@@ -10,19 +10,18 @@
 #include "File.h"
 
 class Solution {
+    //todo revoir ce qui est protected ou non
 protected :
     float const PI = 3.141592;
     float const rEarth = 6378.137;
     float getPi() const;
     float getREarth() const;
-
     virtual std::vector<int> resolve();
     float radConv(float nb);
-
     float dist2Cities(const City& c1, const City& c2);
     std::vector<int> findSmallestDist(File file, const int city, std::vector<int> solution);
-
     int totDist(File file);
+    void writeAnswerFile(std::vector<int> result);
 };
 
 
