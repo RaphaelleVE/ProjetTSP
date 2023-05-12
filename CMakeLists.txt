@@ -3,4 +3,4 @@ project(challengeTSP)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(challengeTSP main.cpp City.cpp City.h File.cpp File.h ScoreUtils.cpp ScoreUtils.h)
+add_executable(challengeTSP main.cpp City.cpp City.h File.cpp File.h ScoreUtils.cpp ScoreUtils.h Random.cpp Random.h Greedy.cpp Greedy.h Solution.cpp Solution.h)
