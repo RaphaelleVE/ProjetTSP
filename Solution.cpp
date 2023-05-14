@@ -49,7 +49,7 @@ std::vector<int> Solution::findSmallestDist(File file, const int city, std::vect
         for (int i : solution) {
             std::cout << i << ' ';
         }
-        std::cout << "debglou";
+
         return solution;
     } else {
         for (int i = 0; i < nbTotCities; ++i) {
@@ -100,6 +100,7 @@ std::vector<int> Solution::resolve() {
 }
 
 //todo A TESTER
+// à mettre dans File.cpp ?
 void Solution::writeAnswerFile(std::vector<int> result) {
     std::ofstream outFile("result.txt");
     //pour vider (voir si utile & crée pas de beug si existe pas)

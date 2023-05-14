@@ -1,6 +1,5 @@
 #include <iostream>
 #include "File.h"
-#include "ScoreUtils.h"
 
 int main() {
     File file ;
