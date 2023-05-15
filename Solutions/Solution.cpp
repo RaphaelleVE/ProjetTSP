@@ -8,10 +8,18 @@
 #include <fstream>
 
 
+/**
+ * Get the pi value
+ * @return
+ */
 float Solution::getPi() const {
     return PI;
 }
 
+/**
+ * Get the Earth's radius value
+ * @return
+ */
 float Solution::getREarth() const {
     return rEarth;
 }
@@ -39,6 +47,14 @@ float Solution::dist2Cities(const City& c1, const City& c2) {
     return getREarth() * acos(sin(city1Lat) * sin(city2Lat) + cos(city1Lat) * cos(city2Lat) * cos(city2Long - city1Long));
 }
 
+//TODO: est-ce qu'on en a encore besoin ?
+/**
+ * Find the smallest distance between cities from a file
+ * @param file
+ * @param city
+ * @param solution
+ * @return
+ */
 std::vector<int> Solution::findSmallestDist(File file, const int city, std::vector<int> solution) {
     float keep = 1000000;
     float tempo;
@@ -95,12 +111,20 @@ int Solution::totDist(File file) {
     return tot;
 }
 
+/**
+ * Resolve function - should be override by children
+ * @return
+ */
 std::vector<int> Solution::resolve() {
-    return std::vector<int>();
+    return {};
 }
 
-//todo A TESTER
+//todo: A TESTER
 // à mettre dans File.cpp ?
+/**
+ * Write the answer in a file
+ * @param result
+ */
 void Solution::writeAnswerFile(std::vector<int> result) {
     std::ofstream outFile("result.txt");
     //pour vider (voir si utile & crée pas de beug si existe pas)

@@ -5,18 +5,34 @@
 #include "File.h"
 #include <fstream>
 
+/**
+ * Get the number of cities in a file
+ * @return
+ */
 int File::getCityNb() const {
     return cityNb;
 }
 
+/**
+ * Set the number of cities
+ * @param cityNb
+ */
 void File::setCityNb(int cityNb) {
     File::cityNb = cityNb;
 }
 
+/**
+ * Get the cities from a file
+ * @return
+ */
 std::vector<City> &File::getCities(){
     return cities;
 }
 
+/**
+ * Set cities' information
+ * @param cities
+ */
 void File::setCities(const std::vector<City> &cities) {
     File::cities = cities;
 }

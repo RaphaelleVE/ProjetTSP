@@ -7,11 +7,17 @@
 #include <utility>
 #include <algorithm>
 
-Greedy::Greedy(std::vector<City> cities) : m_cities(std::move(cities)) {
+/**
+ * Constructor
+ * @param cities
+ */
+Greedy::Greedy(std::vector<City> cities) : m_cities(std::move(cities)) {}
 
-}
-
-//TODO: à tester
+//TODO : à tester
+/**
+ * Give a greedy solution for a specific vector
+ * @return
+ */
 std::vector<int> Greedy::resolve() {
     std::vector<int> solution;
     float keep;
@@ -55,5 +61,5 @@ std::vector<int> Greedy::resolve() {
         solution.push_back(next);
     }
 
-    return Solution::resolve();
+    return solution;
 }
