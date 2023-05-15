@@ -6,7 +6,7 @@
 #define CHALLENGETSP_RANDOM_H
 
 #include <vector>
-#include "City.h"
+#include "../City.h"
 #include "Solution.h"
 
 

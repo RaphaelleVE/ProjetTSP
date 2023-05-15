@@ -6,8 +6,8 @@
 #define CHALLENGETSP_SOLUTION_H
 
 
-#include "City.h"
-#include "File.h"
+#include "../City.h"
+#include "../File.h"
 
 class Solution {
     //todo revoir ce qui est protected ou non

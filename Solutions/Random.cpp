@@ -19,8 +19,12 @@ std::vector<int> Random::resolve() {
     for(City city : m_cities){
         copy.push_back(city.getId());
     }
-    std::random_device rd;
+
+    /*std::linear_congruential_engine<unsigned int, 16807, 0, 2147483647> rd;
     std::default_random_engine gen(rd);
-    std::shuffle(m_cities.begin(),m_cities.end(),gen);
+    std::shuffle(m_cities.begin(),m_cities.end(),gen);*/
+
+    std::shuffle(std::begin(copy), std::end(copy), std::mt19937{std::random_device{}()});
+
     return
 }
