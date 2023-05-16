@@ -11,7 +11,7 @@ Greedy::Greedy(std::vector<City> cities) : m_cities(std::move(cities)) {
 
 }
 
-//TODO: à tester
+//TODO: ne fonctionne pas, retourne un résultat trop long
 std::vector<int> Greedy::resolve() {
     std::vector<int> solution;
     float keep;
@@ -42,7 +42,7 @@ std::vector<int> Greedy::resolve() {
         keep = 1000000;
 
         for (int i = 1; i < nbTotCities; ++i) {
-            if (std::count(solution.begin(), solution.end(), i)) {
+            if (!std::count(solution.begin(), solution.end(), i)) {
                 tempo = dist2Cities(m_cities[back], m_cities[i]);
 
                 if (tempo < keep) {
@@ -55,5 +55,11 @@ std::vector<int> Greedy::resolve() {
         solution.push_back(next);
     }
 
-    return Solution::resolve();
+    for (int i : solution) {
+        std::cout << i << ' ';
+    }
+
+    writeAnswerFile(solution);
+
+    return solution;
 }
