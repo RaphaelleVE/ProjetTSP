@@ -11,7 +11,6 @@ Greedy::Greedy(std::vector<City> cities) : m_cities(std::move(cities)) {
 
 }
 
-//TODO: ne fonctionne pas, retourne un résultat trop long
 std::vector<int> Greedy::resolve() {
     std::vector<int> solution;
     float keep;
@@ -53,10 +52,6 @@ std::vector<int> Greedy::resolve() {
         }
 
         solution.push_back(next);
-    }
-
-    for (int i : solution) {
-        std::cout << i << ' ';
     }
 
     writeAnswerFile(solution);

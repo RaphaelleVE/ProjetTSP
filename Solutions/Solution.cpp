@@ -102,7 +102,7 @@ std::vector<int> Solution::resolve() {
 //todo: A TESTER
 // à mettre dans File.cpp ?
 void Solution::writeAnswerFile(const std::vector<int>& result) {
-    std::ofstream outFile("result.txt");
+    std::ofstream outFile("../test.txt");
 
     //pour vider (voir si utile & crée pas de beug si existe pas)
     //std::ofstream.open("result.txt", std::ofstream::out | std::ofstream::trunc);
