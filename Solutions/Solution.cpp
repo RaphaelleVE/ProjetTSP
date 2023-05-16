@@ -121,15 +121,13 @@ std::vector<int> Solution::resolve() {
 
 //todo: A TESTER
 // à mettre dans File.cpp ?
-/**
- * Write the answer in a file
- * @param result
- */
-void Solution::writeAnswerFile(std::vector<int> result) {
-    std::ofstream outFile("result.txt");
+void Solution::writeAnswerFile(const std::vector<int>& result) {
+    std::ofstream outFile("../test.txt");
+
     //pour vider (voir si utile & crée pas de beug si existe pas)
     //std::ofstream.open("result.txt", std::ofstream::out | std::ofstream::trunc);
     //std::ofstream.close();
+
     for(int cityNb : result){
         outFile << cityNb;
     }

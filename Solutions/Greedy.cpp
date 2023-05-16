@@ -48,7 +48,7 @@ std::vector<int> Greedy::resolve() {
         keep = 1000000;
 
         for (int i = 1; i < nbTotCities; ++i) {
-            if (std::count(solution.begin(), solution.end(), i)) {
+            if (!std::count(solution.begin(), solution.end(), i)) {
                 tempo = dist2Cities(m_cities[back], m_cities[i]);
 
                 if (tempo < keep) {
@@ -60,6 +60,8 @@ std::vector<int> Greedy::resolve() {
 
         solution.push_back(next);
     }
+
+    writeAnswerFile(solution);
 
     return solution;
 }
