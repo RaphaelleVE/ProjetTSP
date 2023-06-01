@@ -13,7 +13,7 @@ public:
     Greedy(std::vector <City> cities);
     std::vector<int> resolve() override;
 protected:
-    std::vector <City> m_cities;
+   const std::vector<City> m_cities;
 };
 
 

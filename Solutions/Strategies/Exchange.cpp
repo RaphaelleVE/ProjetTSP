@@ -10,8 +10,8 @@
 /**
  * Exchange 2 defined values in a vector (4.1)
  * @param vector
- * @param v1
- * @param v2
+ * @param v1Index
+ * @param v2Index
  * @return
  */
 void Exchange::exchange(std::vector<int> vector, int v1, int v2) {
@@ -22,17 +22,18 @@ void Exchange::exchange(std::vector<int> vector, int v1, int v2) {
 }
 
 //TODO: à tester
- /**
-  * Exchange 2 values in a vector thanks to an index (4.2)
-  * @param vector
-  * @param index
-  */
-void Exchange::exchangeByIndex(std::vector<int> vector, int index) {
-    double n = (1 + sqrt(1 + 8 * index)) / 2;
-    int v1 = index - (n * (n - 1)) / 2;
-    int v2 = vector.size() - n + v1;
+/**
+* Exchange 2 values in a vector thanks to an index (4.2)
+* @param vector
+* @param index
+*/
+std::vector<City> Exchange::exchangeByIndex(std::vector<City> initSolution, int index) {
+    std::vector<City> newSolution = initSolution;
 
-    return exchange(vector, v1, v2);
+    double n = (1 + sqrt(1 + 8 * index)) / 2;
+    int v1Index = index - (n * (n - 1)) / 2;
+    int v2Index = newSolution.size() - n + v1Index;
+    return exchange(newSolution, v1Index, v2Index);
 }
 
 //TODO: à placer dans une fonction globale pour qu'elle puisse être aussi utilisée par Reinsertion
@@ -50,4 +51,8 @@ int Exchange::getIndex(const std::vector<int>& vector, const int value) {
     }
 
     return false;
+}
+
+int Exchange::numberOfSolution(int solutionSize) {
+    return solutionSize * (solutionSize - 1) / 2;
 }

@@ -17,8 +17,6 @@ protected :
     float getPi() const;
     float getREarth() const;
     float radConv(float nb);
-
-    float dist2Cities(const City& c1, const City& c2);
     std::vector<int> findSmallestDist(File file, const int city, std::vector<int> solution);
     int totDist(File file);
     void writeAnswerFile(std::vector<int> result);

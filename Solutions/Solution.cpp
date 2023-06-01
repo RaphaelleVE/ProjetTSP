@@ -6,6 +6,7 @@
 #include <math.h>
 #include <algorithm>
 #include <fstream>
+#include <limits>
 
 
 /**
@@ -56,7 +57,7 @@ float Solution::dist2Cities(const City& c1, const City& c2) {
  * @return
  */
 std::vector<int> Solution::findSmallestDist(File file, const int city, std::vector<int> solution) {
-    float keep = 1000000;
+    int keep = std::numeric_limits<int>::max();
     float tempo;
     const int nbTotCities = file.getCityNb();
     solution.push_back(city);
@@ -119,9 +120,7 @@ std::vector<int> Solution::resolve() {
     return {};
 }
 
-//todo: A TESTER
-// à mettre dans File.cpp ?
-void Solution::writeAnswerFile(const std::vector<int>& result) {
+void Solution::writeAnswerFile( std::vector<City> result) {
     std::ofstream outFile("../test.txt");
 
     //pour vider (voir si utile & crée pas de beug si existe pas)

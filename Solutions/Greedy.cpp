@@ -3,9 +3,9 @@
 //
 
 #include "Greedy.h"
-
 #include <utility>
 #include <algorithm>
+#include <limits>
 
 /**
  * Constructor
@@ -13,7 +13,6 @@
  */
 Greedy::Greedy(std::vector<City> cities) : m_cities(std::move(cities)) {}
 
-//TODO : à tester
 /**
  * Give a greedy solution for a specific vector
  * @return
@@ -26,14 +25,14 @@ std::vector<int> Greedy::resolve() {
     int next;
 
     const int nbTotCities = m_cities.size();
-    solution.push_back(0);
+    solution.push_back(m_cities[0]);
 
     /* Tq solution.size != nbTotCities, faire
      *      On récupère la dernière valeur de solution
      *      On donne une valeur à keep (qui deviendra dist minimale)
      *
      *      Pour i, 0 -> nbTotCities, faire
-     *          Si i n'est pas dans solution (prend aussi en compte si back == i=), faire
+     *          Si i n'est pas dans solution (prend aussi en compte si back == i), faire
      *              On calcule la distance entre back et cities(i)
      *              Si la distance est < à keep, faire
      *                  keep prend la valeur et on sauvegarde le numéro de la ville
@@ -45,10 +44,12 @@ std::vector<int> Greedy::resolve() {
     */
     while (solution.size() != nbTotCities) {
         back = solution.back();
-        keep = 1000000;
+        keep = std::numeric_limits<int>::max();
 
         for (int i = 1; i < nbTotCities; ++i) {
-            if (!std::count(solution.begin(), solution.end(), i)) {
+            const City city = m_cities[i];
+
+            if (!std::count(solution.begin(), solution.end(), city)) {
                 tempo = dist2Cities(m_cities[back], m_cities[i]);
 
                 if (tempo < keep) {
@@ -58,7 +59,7 @@ std::vector<int> Greedy::resolve() {
             }
         }
 
-        solution.push_back(next);
+        solution.push_back(m_cities[next]);
     }
 
     writeAnswerFile(solution);
