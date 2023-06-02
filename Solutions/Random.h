@@ -13,7 +13,7 @@
 class Random : public Solution {
 public:
     Random(std::vector <City> cities);
-    std::vector<int> resolve() override;
+    std::vector<City> resolve() override;
 protected:
     std::vector <City> m_cities;
 };

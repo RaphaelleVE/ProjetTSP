@@ -17,12 +17,9 @@ Greedy::Greedy(std::vector<City> cities) : m_cities(std::move(cities)) {}
  * Give a greedy solution for a specific vector
  * @return
  */
-std::vector<int> Greedy::resolve() {
-    std::vector<int> solution;
-    float keep;
-    float tempo;
-    int back;
-    int next;
+std::vector<City> Greedy::resolve() {
+    std::vector<City> solution;
+    std::vector<City> copyCities = m_cities;
 
     const int nbTotCities = copyCities.size();
     solution.push_back(copyCities[0]);

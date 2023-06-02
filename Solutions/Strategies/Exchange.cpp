@@ -14,11 +14,10 @@
  * @param v2Index
  * @return
  */
-void Exchange::exchange(std::vector<int> vector, int v1, int v2) {
-    int v1Index = getIndex(vector, v1);
-    int v2Index = getIndex(vector, v2);
-
-    return std::swap(vector[v1Index], vector[v2Index]);
+std::vector<City> Exchange::exchange(std::vector<City> initSolution, int v1Index, int v2Index) {
+    std::vector<City> newSolution = initSolution;
+    std::swap(newSolution[v1Index], newSolution[v2Index]);
+    return newSolution;
 }
 
 //TODO: à tester
@@ -36,21 +35,15 @@ std::vector<City> Exchange::exchangeByIndex(std::vector<City> initSolution, int 
     return exchange(newSolution, v1Index, v2Index);
 }
 
-//TODO: à placer dans une fonction globale pour qu'elle puisse être aussi utilisée par Reinsertion
-/**
- * Get index of a value in a vector
- * @param vector
- * @param value
- * @return
- */
-int Exchange::getIndex(const std::vector<int>& vector, const int value) {
-    auto it = std::find(vector.begin(), vector.end(), value);
 
-    if (it != vector.end()) {
-        return std::distance(vector.begin(), it);
+
+std::vector<City> Exchange::generateSolution(const std::vector<City> &solution, int index) {
+    std::cout<< " exchange write : ";
+    for(City city : solution){
+        std::cout<< city.getId();
     }
-
-    return false;
+    std::cout<< "\n";
+    return exchangeByIndex(solution,index);
 }
 
 int Exchange::numberOfSolution(int solutionSize) {

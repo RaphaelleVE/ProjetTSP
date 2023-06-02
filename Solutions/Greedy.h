@@ -11,7 +11,7 @@
 class Greedy : public Solution {
 public:
     Greedy(std::vector <City> cities);
-    std::vector<int> resolve() override;
+    std::vector<City> resolve() override;
 protected:
    const std::vector<City> m_cities;
 };

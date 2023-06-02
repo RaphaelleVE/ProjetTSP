@@ -13,15 +13,23 @@
 
 class LocalSearch {
 public :
-    explicit LocalSearch(std::unique_ptr<NeighborStart> &&neighborStart = {}, Solution solution = {});
-    std::vector<City> bestImproving(std::vector<City> solution);
-    std::vector<City> firstImproving(std::vector<City> solution);
-    std::vector<City> algoDescent(std::vector<City> solutionTab);
-    std::vector<City> firstRandomImproving(std::vector<City> solution);
+    LocalSearch(Solution *solution,std::unique_ptr<NeighborStart> &&neighborStart = {});
+    std::vector<City> localSearchIterate();
+
 
 private:
+    std::vector<City> localSearchAll(std::vector<City> solution);
+    std::vector<City> algoDescent(std::vector<City> solution);
+    std::vector<City> firstImproving(std::vector<City> solution);
+    std::vector<City> firstRandomImproving(std::vector<City> solution);
+    std::vector<City> bestImproving(std::vector<City> solution);
+    std::vector<City> originalSolution;
     std::unique_ptr<NeighborStart> neighborStart;
-    Solution solutionType;
+    Solution *solutionType;
+    void writeAnswerFile(std::vector<City> result);
+    std::vector<std::unique_ptr<NeighborStart>> listNighborStrat;
+    std::vector<City> solutionAgitator(std::vector<City> solution, const int force);
+
 };
 
 

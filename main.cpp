@@ -5,6 +5,7 @@
 #include "Solutions/Strategies/Reinsertion.h"
 #include "Solutions/LocalSearch.h"
 #include "Solutions/Strategies/Exchange.h"
+#include "Solutions/Strategies/TwoOpt.h"
 
 int main() {
     File file ;
@@ -16,12 +17,14 @@ int main() {
     /*Random randomFun(file.getCities());
     randomFun.resolve();*/
 
-    //Exchange::exchange({0, 1, 2, 3, 4, 5, 6, 7, 8, 9}, 2, 5);
+    auto *randomSolution = new Random(file.getCities());
+    auto *greedySolution = new Greedy(file.getCities());
 
-    //Reinsertion::reinsertion({0, 1, 2, 3, 4, 5, 6, 7, 8, 9}, 2, 5);
 
-    LocalSearch localSearch(std::make_unique<Exchange>(),Random(file.getCities()).resolve());
-    localSearch.algoDescent(file.getCities());
+    LocalSearch localSearch(greedySolution,std::make_unique<Reinsertion>());
+  //  localSearch.algoDescent();
+    localSearch.localSearchIterate();
+   //localSearch.solutionAgitator()
 
     return 0;
 }

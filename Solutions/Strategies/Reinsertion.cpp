@@ -11,16 +11,14 @@ std::vector<City> Reinsertion::reinsertion(std::vector<City> solution, int v1Ind
     std::vector<City> newSolution = solution;
 
     if (v1Index < v2Index) { // si v1Index = 1 et v2Index = 2
-        vector.insert(vector.begin() + v1Index, v1); // on ajoute la valeur après v2Index;
-        vector.erase(std::remove(vector.begin(), vector.end(), v2Index), vector.end()); // on supprime la valeur à l'index v1Index
+        newSolution.insert(newSolution.begin() + v2Index, solution[v1Index]); // on ajoute la valeur après v2Index;
+        newSolution.erase(newSolution.begin() + v1Index);// on supprime la valeur à l'index v1Index
     } else {
-        vector.erase(std::remove(vector.begin(), vector.end(), v1Index), vector.end());
-        vector.insert(vector.begin() + v1Index, v1);
+        newSolution.erase(newSolution.begin() + v1Index);
+        newSolution.insert(newSolution.begin() + v2Index, solution[v1Index]);
     }
 
-    //vector.at(v1Index) = v2Index //TODO : à tester
-
-    return vector;
+    return newSolution;
 }
 
 //TODO: à tester

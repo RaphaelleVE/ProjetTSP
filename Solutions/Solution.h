@@ -11,6 +11,11 @@
 
 class Solution {
     //todo: revoir ce qui est protected ou non
+public:
+    float dist2Cities(const City& c1, const City& c2);
+    virtual std::vector<City> resolve();
+    float totDist(std::vector<City> cityTab);
+
 protected :
     float const PI = 3.141592;
     float const rEarth = 6378.137;
@@ -18,10 +23,8 @@ protected :
     float getREarth() const;
     float radConv(float nb);
     std::vector<int> findSmallestDist(File file, const int city, std::vector<int> solution);
-    int totDist(File file);
-    void writeAnswerFile(std::vector<int> result);
-
-    virtual std::vector<int> resolve();
+    void writeAnswerFile(std::vector<City> result);
+    static int getIndex(const std::vector<City>& solution, City value);
 };
 
 

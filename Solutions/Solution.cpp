@@ -94,18 +94,20 @@ std::vector<int> Solution::findSmallestDist(File file, const int city, std::vect
  * @param sType
  * @return
  */
-int Solution::totDist(File file) {
+float Solution::totDist(std::vector<City> cityTab) {
     std::vector <int> solTab ;
+    //todo remove if work. if not : change citytab[soltab[i
 
-    int tot = 0;
-    for(int i = 0; i < file.getCityNb() +1; i++){
-        if(i != file.getCityNb()){
-            tot += dist2Cities(file.getCities()[solTab[i]],file.getCities()[solTab[i+1]]);
+    //todo check if not out of bound
+    float tot = 0;
+    for(int i = 0; i < cityTab.size(); i++){
+        if(i != cityTab.size()){
+            tot += dist2Cities(cityTab[i],cityTab[i+1]);
             //std::cout << "tot1 " << tot << ' ';
         }
         else {
             std::cout << "here" << ' ';
-            tot += dist2Cities(file.getCities()[solTab[i]],file.getCities()[solTab[0]]);
+            tot += dist2Cities(cityTab[i],cityTab[0]);
             //std::cout << "totot " << tot << ' ';
         }
     }
@@ -116,7 +118,9 @@ int Solution::totDist(File file) {
  * Resolve function - should be override by children
  * @return
  */
-std::vector<int> Solution::resolve() {
+ std::vector<City> Solution::resolve() {
+    std::cout<< "resolve base";
+
     return {};
 }
 
@@ -126,10 +130,13 @@ void Solution::writeAnswerFile( std::vector<City> result) {
     //pour vider (voir si utile & crée pas de beug si existe pas)
     //std::ofstream.open("result.txt", std::ofstream::out | std::ofstream::trunc);
     //std::ofstream.close();
-
-    for(int cityNb : result){
-        outFile << cityNb;
+    std::cout<< "first write : ";
+    for(City city : result){
+        outFile << city.getId() << " ";
+        std::cout<< city.getId();
     }
+    std::cout<< "\n";
+
     outFile.close();
 }
 

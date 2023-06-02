@@ -10,7 +10,8 @@
  * Constructor
  * @param cities
  */
-Random::Random(std::vector<City> cities) : m_cities(cities) {}
+Random::Random(std::vector<City> cities) : Solution(), m_cities(cities) {
+}
 
 /**
  * Give a random solution for a specific vector
@@ -18,14 +19,7 @@ Random::Random(std::vector<City> cities) : m_cities(cities) {}
  */
 std::vector<City> Random::resolve() {
     std::vector<City> copy = m_cities ;
-
-    for(City city : m_cities){
-        copy.push_back(city.getId());
-    }
-
     std::shuffle(std::begin(copy), std::end(copy), std::mt19937{std::random_device{}()});
-
     writeAnswerFile(copy);
-
     return copy;
 }
