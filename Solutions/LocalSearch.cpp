@@ -3,6 +3,9 @@
 //
 
 #include "LocalSearch.h"
+#include "Strategies/Reinsertion.h"
+#include "Strategies/Exchange.h"
+#include "Strategies/TwoOpt.h"
 #include <limits>
 #include <random>
 #include <algorithm>
@@ -116,3 +119,73 @@ std::vector<City> LocalSearch::firstRandomImproving(std::vector<City> solutionTa
     }
     return bestSolution;
 }
+
+std::vector<City> LocalSearch::solutionAgitator(std::vector<City> solution, const int force) {
+    std::vector<City> perturbedSolution = solution;
+
+    for (int i = 0; i < force; ++i) {
+        std::cout<< "startfor";
+
+        int neighborIndex = rand() % listNighborStrat.size();
+        originalSolution = perturbedSolution;
+        neighborStart.reset(listNighborStrat[neighborIndex].get());
+       //neighborStart.reset(strat.get());
+        perturbedSolution = algoDescent(perturbedSolution);
+
+    }
+
+    return perturbedSolution;
+}
+
+/**
+ * Write the given result in a given file
+ * @param result
+ */
+void LocalSearch::writeAnswerFile( std::vector<City> result) {
+    std::ofstream outFile("../test2.txt");
+
+    //pour vider (voir si utile & crée pas de beug si existe pas)
+    //std::ofstream.open("result.txt", std::ofstream::out | std::ofstream::trunc);
+    //std::ofstream.close();
+    std::cout <<  " second write : ";
+    for(City city : result){
+        std::cout<<city.getId();
+        outFile << city.getId() << " ";
+    }
+    outFile.close();
+}
+
+
+std::vector<City> LocalSearch::localSearchAll(std::vector<City> solution){
+    std::vector<City> bestSolution = solution;
+    float bestDistance = solutionType->totDist(solution);
+    for(std::unique_ptr<NeighborStart>& strat : listNighborStrat){
+        neighborStart.reset(strat.get());
+        std::vector<City> solution = algoDescent(bestSolution);
+        float distSolution = solutionType->totDist(solution);
+        if(distSolution<bestDistance){
+            bestSolution = solution;
+            bestDistance = distSolution;
+
+        }
+    }
+    return bestSolution;
+}
+
+std::vector<City> LocalSearch::localSearchIterate(){
+    int i=0;
+    std::vector<City> bestSolution = originalSolution;
+    while(i<20){
+
+        std::cout<< "\n"<< "\n" << i << "\n";
+        bestSolution = localSearchAll(bestSolution);
+        std::cout<< "\n"<< "\n" << "agitaotr" << "\n";
+        bestSolution = solutionAgitator(bestSolution,5);
+        i++;
+
+
+    }
+    writeAnswerFile(bestSolution);
+    return bestSolution;
+}
+
