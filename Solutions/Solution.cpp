@@ -132,3 +132,21 @@ void Solution::writeAnswerFile( std::vector<City> result) {
     }
     outFile.close();
 }
+
+/**
+ * Get index of a city in a vector
+ * @param vector
+ * @param value
+ * @return
+ */
+int Solution::getIndex(const std::vector<City>& solution, const City value) {
+    auto it = std::find_if(solution.begin(), solution.end(), [&value](const City& city ){
+        return city.getId() == value.getId();
+    });
+
+    if (it != solution.end()) {
+        return std::distance(solution.begin(), it);
+    }
+
+    return false;
+}

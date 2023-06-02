@@ -24,8 +24,9 @@ std::vector<int> Greedy::resolve() {
     int back;
     int next;
 
-    const int nbTotCities = m_cities.size();
-    solution.push_back(m_cities[0]);
+    const int nbTotCities = copyCities.size();
+    solution.push_back(copyCities[0]);
+    copyCities.erase(copyCities.begin());
 
     /* Tq solution.size != nbTotCities, faire
      *      On récupère la dernière valeur de solution
@@ -43,23 +44,23 @@ std::vector<int> Greedy::resolve() {
      *      On ajoute la ville la + petite à solution
     */
     while (solution.size() != nbTotCities) {
-        back = solution.back();
-        keep = std::numeric_limits<int>::max();
+        City startCity = solution.back();
+        int minDistance = std::numeric_limits<int>::max();
+        City nextCity;
 
-        for (int i = 1; i < nbTotCities; ++i) {
-            const City city = m_cities[i];
+        for (int i = 0; i < copyCities.size(); ++i) {
+            int currentDistance = dist2Cities(startCity, copyCities[i]);
 
-            if (!std::count(solution.begin(), solution.end(), city)) {
-                tempo = dist2Cities(m_cities[back], m_cities[i]);
-
-                if (tempo < keep) {
-                    keep = tempo;
-                    next = i;
-                }
+            if (currentDistance < minDistance) {
+                minDistance = currentDistance;
+                nextCity = copyCities[i];
             }
         }
 
-        solution.push_back(m_cities[next]);
+        int indexNextCity = getIndex(copyCities, nextCity);
+
+        solution.push_back(nextCity);
+        copyCities.erase(copyCities.begin() + indexNextCity);
     }
 
     writeAnswerFile(solution);

@@ -12,7 +12,6 @@
 class NeighborStart {
 public:
     virtual std::vector<City> generateSolution(const std::vector<City>& solution, int index) = 0;
-    static int getIndex(const std::vector<City>& solution, int value);
     virtual int numberOfSolution(int solutionSize) = 0;
     virtual ~NeighborStart() {}
 };
